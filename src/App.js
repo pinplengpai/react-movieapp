@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './components/Search'
+import IndexPage from './components/IndexPage'
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <header>
         <h1> Movie app </h1>
         <main> 
-          <Search />
+          <IndexPage />
         </main>
       </header>
     </div>
