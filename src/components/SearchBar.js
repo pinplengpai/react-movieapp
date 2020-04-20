@@ -22,11 +22,10 @@ const Bar = styled(Input)`
 
 
 
-function SearchBar({ handleInput }) {
+function SearchBar({ handleInput, search }) {
     return (
        <section>
-           <Bar type="text" placeholder="Try 'Love, Rosie'" onChange={handleInput} />
-
+           <Bar type="text" placeholder="Try 'Love, Rosie'" onChange={handleInput} onKeyPress={search}/>
        </section>
     )
 }
