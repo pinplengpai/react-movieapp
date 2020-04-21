@@ -1,5 +1,4 @@
-import React, { useState, useEffect} from 'react';
-
+import React from 'react';
 import MovieList from './movie-list';
 
 
@@ -18,7 +17,6 @@ function IndexPage(){
         <>
             <div >
                 <header>
-                    <h1> Movie app </h1>
                     <main> 
                         <MovieList />
                     </main>

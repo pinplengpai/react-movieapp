@@ -43,35 +43,35 @@ const MovieList = () => {
     }; //js function for searching in the bar
     
         
-function ShowData() {
-    movies.map( (movie) => {
-        if(filter.length !== 0) {
-            if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
-                return (
-                    <List key={movie.id}>
-                        <Col xl={8} sm={12}>
-                            <PosterImage src={movie.images}/>
-                            <p>{movie.title}</p> 
-                        </Col>
-                    </List>
-                )
-            } else {
-                return null
-            }
-        }
-        return (
-            <List key={movie.id}>
-                <Col xl={8} sm={12}>
-                    <PosterImage src={movie.images}/>
-                    <p>{movie.title}</p> 
-                </Col>
-            </List>
-        )
-    })
-}
-    useEffect(() => {
-        ShowData();
-    },[]);
+// function ShowData() {
+//      movies.map( (movie) => {
+//         if(filter.length !== 0) {
+//             if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
+//                 return (
+//                     <List key={movie.id}>
+//                         <Col xl={8} sm={12}>
+//                             <PosterImage src={movie.images}/>
+//                             <p>{movie.title}</p> 
+//                         </Col>
+//                     </List>
+//                 )
+//             } else {
+//                 return null
+//             }
+//         }
+//         return (
+//             <List key={movie.id}>
+//                 <Col xl={8} sm={12}>
+//                     <PosterImage src={movie.images}/>
+//                     <p>{movie.title}</p> 
+//                 </Col>
+//             </List>
+//         )
+//     })
+// }
+    // useEffect(() => {
+    //     ShowData();
+    // },[]);
 
 
     return (
@@ -80,7 +80,30 @@ function ShowData() {
             <SearchBar handleInput = {handleInput} />
                 <Row gutter={16,16}>
                     <ul>
-                        {ShowData}
+                        {movies.map( (movie) => {
+                            if(filter.length !== 0) {
+                                if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
+                                    return (
+                                        <List key={movie.id}>
+                                            <Col xl={8} sm={12}>
+                                                <PosterImage src={movie.images}/>
+                                                <p>{movie.title}</p> 
+                                            </Col>
+                                        </List>
+                                    )
+                                } else {
+                                return null
+                                }
+                            }
+                                return (
+                                    <List key={movie.id}>
+                                        <Col xl={8} sm={12}>
+                                            <PosterImage src={movie.images}/>
+                                            <p>{movie.title}</p> 
+                                        </Col>
+                                    </List>
+                                )
+                        })}
                     </ul>
                 </Row>
         </>
