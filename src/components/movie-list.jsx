@@ -3,18 +3,15 @@ import firebase from '../firebase';
 import style from 'styled-components';
 import {Row, Col} from 'antd';
 import SearchBar from'./SearchBar'
+import { Like } from '.././styles/index'
+
 
 const PosterImage = style.img`
     width: 300px;
     height: 400px;
     margin: 2%;
 `
-const List = style.div`
-    li {
-      
 
-    }
-`
 function useMovies(){
     const [movies, setMovies] = useState([])
 
@@ -48,24 +45,24 @@ const MovieList = () => {
 //         if(filter.length !== 0) {
 //             if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
 //                 return (
-//                     <List key={movie.id}>
+//                     <li key={movie.id}>
 //                         <Col xl={8} sm={12}>
 //                             <PosterImage src={movie.images}/>
 //                             <p>{movie.title}</p> 
 //                         </Col>
-//                     </List>
+//                     </li>
 //                 )
 //             } else {
 //                 return null
 //             }
 //         }
 //         return (
-//             <List key={movie.id}>
+//             <li key={movie.id}>
 //                 <Col xl={8} sm={12}>
 //                     <PosterImage src={movie.images}/>
 //                     <p>{movie.title}</p> 
 //                 </Col>
-//             </List>
+//             </li>
 //         )
 //     })
 // }
@@ -84,24 +81,26 @@ const MovieList = () => {
                             if(filter.length !== 0) {
                                 if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
                                     return (
-                                        <List key={movie.id}>
+                                        <li key={movie.id}>
                                             <Col xl={8} sm={12}>
                                                 <PosterImage src={movie.images}/>
                                                 <p>{movie.title}</p> 
+                                                <Like> like </Like>
                                             </Col>
-                                        </List>
+                                        </li>
                                     )
                                 } else {
                                 return null
                                 }
                             }
                                 return (
-                                    <List key={movie.id}>
+                                    <li key={movie.id}>
                                         <Col xl={8} sm={12}>
                                             <PosterImage src={movie.images}/>
                                             <p>{movie.title}</p> 
+                                            <Like> like </Like>
                                         </Col>
-                                    </List>
+                                    </li>
                                 )
                         })}
                     </ul>
