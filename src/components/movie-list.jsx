@@ -1,7 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import firebase from '../firebase';  
-import { identifier } from '@babel/types';
+import style from 'styled-components';
+import {Row, Col} from 'antd';
+import SearchBar from'./SearchBar'
 
+const PosterImage = style.img`
+    width: 300px;
+    height: 400px;
+    margin: 2%;
+`
+const List = style.div`
+    li {
+      
+
+    }
+`
 function useMovies(){
     const [movies, setMovies] = useState([])
 
@@ -24,21 +37,56 @@ function useMovies(){
 
 const MovieList = () => {
     const movies = useMovies() //referancing data like regular react hook 
+    const [filter, setFilter] = useState("")
+    const handleInput = event => {
+        setFilter(event.target.value);
+    }; //js function for searching in the bar
+    
+        
+function ShowData() {
+    movies.map( (movie) => {
+        if(filter.length !== 0) {
+            if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
+                return (
+                    <List key={movie.id}>
+                        <Col xl={8} sm={12}>
+                            <PosterImage src={movie.images}/>
+                            <p>{movie.title}</p> 
+                        </Col>
+                    </List>
+                )
+            } else {
+                return null
+            }
+        }
+        return (
+            <List key={movie.id}>
+                <Col xl={8} sm={12}>
+                    <PosterImage src={movie.images}/>
+                    <p>{movie.title}</p> 
+                </Col>
+            </List>
+        )
+    })
+}
+    useEffect(() => {
+        ShowData();
+    },[]);
+
+
     return (
         <>
             <h2>Movie List</h2>
-                <ol>
-                    {movies.map((movie) =>
-                        <li key={movie.id}>
-                            <div>
-                                Title:{movie.title},
-                                Image: {movie.duration}
-                            </div>
-                        </li>
-                    )}
-                </ol>
+            <SearchBar handleInput = {handleInput} />
+                <Row gutter={16,16}>
+                    <ul>
+                        {ShowData}
+                    </ul>
+                </Row>
         </>
     )
 }
+
+
 
 export default MovieList
