@@ -1,16 +1,20 @@
 import React from 'react';
-import IndexPage from './components/IndexPage'
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import Header from './components/Header';
+import MyMovies from './components/MyMovies';
+import IndexPage from './components/IndexPage';
 
 
 function App() {
   return (
-    <div className="App">
-
-        <main> 
-          <IndexPage />
-        </main>
-   
-    </div>
+  
+        <BrowserRouter>
+          <Header/>
+            <Switch>
+                <Route path="/" exact component={IndexPage} />
+                <Route path="/mymovies" exact component={MyMovies}/>
+            </Switch>
+        </BrowserRouter>
   );
 }
 
