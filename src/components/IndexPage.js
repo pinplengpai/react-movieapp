@@ -2,13 +2,7 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 import Results from './Results';
-import firebase from '../firebase';
-
-firebase.firestore().collection('times').add({
-    title:'Rubik\'s Cube',
-    times_seconds: 45
-})
-
+import MovieList from './movie-list';
 
 function IndexPage(){
     const [state, setState] = useState({
@@ -70,6 +64,7 @@ function IndexPage(){
                     <main> 
                         <SearchBar handleInput = {handleInput} search={search}  />
                         <Results results={state.results} />
+                        <MovieList />
                     </main>
                 </header>
             </div>
