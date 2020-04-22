@@ -38,37 +38,37 @@ const MovieList = () => {
     const handleInput = event => {
         setFilter(event.target.value);
     }; //js function for searching in the bar
-    
-        
-// function ShowData() {
-//      movies.map( (movie) => {
-//         if(filter.length !== 0) {
-//             if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
-//                 return (
-//                     <li key={movie.id}>
-//                         <Col xl={8} sm={12}>
-//                             <PosterImage src={movie.images}/>
-//                             <p>{movie.title}</p> 
-//                         </Col>
-//                     </li>
-//                 )
-//             } else {
-//                 return null
-//             }
-//         }
-//         return (
-//             <li key={movie.id}>
-//                 <Col xl={8} sm={12}>
-//                     <PosterImage src={movie.images}/>
-//                     <p>{movie.title}</p> 
-//                 </Col>
-//             </li>
-//         )
-//     })
-// }
-    // useEffect(() => {
-    //     ShowData();
-    // },[]);
+             
+    const SearchAbleList = () => {
+        return (
+            movies.map( (movie) => {
+                if(filter.length !== 0) {
+                    if(movie.title.toLowerCase().includes(filter.toLowerCase())){
+                        return (
+                            <li key={movie.id}>
+                                <Col xl={8} sm={12}>
+                                    <PosterImage src={movie.images}/>
+                                    <p>{movie.title}</p> 
+                                    <Like> like </Like>
+                                </Col>
+                            </li>
+                        )
+                    } else {
+                        return null
+                    }
+                }
+                return (
+                    <li key={movie.id}>
+                        <Col xl={8} sm={12}>
+                            <PosterImage src={movie.images}/>
+                            <p>{movie.title}</p> 
+                            <Like> like </Like>
+                        </Col>
+                    </li>
+                )
+            })
+        )
+    }
 
 
     return (
@@ -77,32 +77,7 @@ const MovieList = () => {
             <SearchBar handleInput = {handleInput} />
                 <Row gutter={16,16}>
                     <ul>
-                        {movies.map( (movie) => {
-                            if(filter.length !== 0) {
-                                if(movie.title.toLowerCase().startsWith(filter.toLowerCase())){
-                                    return (
-                                        <li key={movie.id}>
-                                            <Col xl={8} sm={12}>
-                                                <PosterImage src={movie.images}/>
-                                                <p>{movie.title}</p> 
-                                                <Like> like </Like>
-                                            </Col>
-                                        </li>
-                                    )
-                                } else {
-                                return null
-                                }
-                            }
-                                return (
-                                    <li key={movie.id}>
-                                        <Col xl={8} sm={12}>
-                                            <PosterImage src={movie.images}/>
-                                            <p>{movie.title}</p> 
-                                            <Like> like </Like>
-                                        </Col>
-                                    </li>
-                                )
-                        })}
+                       <SearchAbleList />
                     </ul>
                 </Row>
         </>
