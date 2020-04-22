@@ -2,7 +2,7 @@ import React from 'react';
 import MovieList from './movie-list';
 
 
-function IndexPage(){
+function HomePage(){
 
 
     
@@ -19,4 +19,4 @@ function IndexPage(){
     );
 }
 
-export default IndexPage
+export default HomePage
