@@ -1,41 +1,11 @@
 import React, { useState } from 'react'
-import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import withStyles from '@material-ui/core/styles/withStyles'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../firebase'
+import styled from 'styled-components'
 
-const styles = theme => ({
-	main: {
-		width: 'auto',
-		display: 'block', // Fix IE 11 issue.
-		marginLeft: theme.spacing.unit * 3,
-		marginRight: theme.spacing.unit * 3,
-		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-			width: 400,
-			marginLeft: 'auto',
-			marginRight: 'auto',
-		},
-	},
-	paper: {
-		marginTop: theme.spacing.unit * 8,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-	},
-	avatar: {
-		margin: theme.spacing.unit,
-		backgroundColor: theme.palette.secondary.main,
-	},
-	form: {
-		width: '100%',
-		marginTop: theme.spacing.unit,
-	},
-	submit: {
-		marginTop: theme.spacing.unit * 3,
-	},
-});
+const Button = styled.button`
+	background-color: #8aa15f;
+`
 
 function SignIn(props) {
 	const { classes } = props
@@ -44,30 +14,25 @@ function SignIn(props) {
 	const [password, setPassword] = useState('')
 
 	return (
-		<main className={classes.main}>
-			<Paper className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Sign in
-       			</Typography>
-				<form className={classes.form} onSubmit={e => e.preventDefault() && false}>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="email">Email Address</InputLabel>
-						<Input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)} />
-					</FormControl>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="password">Password</InputLabel>
-						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
-					</FormControl>
+		<main>
+			<div>
+				<div>avatar in the future</div>
+				<h1>Sign in</h1>
+				<form  onSubmit={e => e.preventDefault() && false}>
+					<form margin="normal" required fullWidth>
+						<label for="email">Email Address</label>
+						<input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)} />
+					</form>
+					<form margin="normal" required fullWidth>
+						<label for="password">Password</label>
+						<input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
+					</form>
 					<Button
 						type="submit"
 						fullWidth
 						variant="contained"
 						color="primary"
-						onClick={login}
-						className={classes.submit}>
+						onClick={login}>
 						Sign in
           			</Button>
 					<Button
@@ -76,12 +41,11 @@ function SignIn(props) {
 						variant="contained"
 						color="secondary"
 						component={Link}
-						to="/register"
-						className={classes.submit}>
+						to="/register">
 						Register
           			</Button>
 				</form>
-			</Paper>
+			</div>
 		</main>
 	)
 
@@ -95,4 +59,4 @@ function SignIn(props) {
 	}
 }
 
-export default withRouter(withStyles(styles)(SignIn))
+export default withRouter(SignIn)

@@ -1,67 +1,32 @@
 import React from 'react'
-import { Typography, Paper, Avatar, Button } from '@material-ui/core'
-import VerifiedUserOutlined from '@material-ui/icons/VerifiedUserOutlined'
-import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-const styles = theme => ({
-	main: {
-		width: 'auto',
-		display: 'block', // Fix IE 11 issue.
-		marginLeft: theme.spacing.unit * 3,
-		marginRight: theme.spacing.unit * 3,
-		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-			width: 400,
-			marginLeft: 'auto',
-			marginRight: 'auto',
-		},
-	},
-	paper: {
-		marginTop: theme.spacing.unit * 8,
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
-	},
-	avatar: {
-		margin: theme.spacing.unit,
-		backgroundColor: theme.palette.secondary.main,
-	},
-	submit: {
-		marginTop: theme.spacing.unit * 3,
-	},
-})
+const Button = styled.button`
+	background-color: #8aa15f;
+	color: white;
+`
 
 function HomePage(props) {
 	const { classes } = props
 
 	return (
-		<main className={classes.main}>
-			<Paper className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<VerifiedUserOutlined />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Hello Guest!
-				</Typography>
+		<main >
+			<div >
+				<div>Avatar in the future</div>
+				<h1> Hello Guest!</h1>
 				<Button
 					type="submit"
-					fullWidth
 					variant="contained"
-					color="secondary"
 					component={Link}
-					to="/register"
-					className={classes.submit}>
+					to="/register">
 					Register
           		</Button>
 				<Button
 					type="submit"
-					fullWidth
 					variant="contained"
-					color="secondary"
 					component={Link}
-					to="/login"
-					className={classes.submit}>
+					to="/login">
 					Login
           		</Button>
 				<Button
@@ -70,13 +35,12 @@ function HomePage(props) {
 					variant="contained"
 					color="secondary"
 					component={Link}
-					to="/dashboard"
-					className={classes.submit}>
+					to="/dashboard">
 					Dashboard
           		</Button>
-			</Paper>
+			</div>
 		</main>
 	)
 }
 
-export default withStyles(styles)(HomePage)
+export default HomePage

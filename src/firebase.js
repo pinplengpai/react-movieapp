@@ -42,15 +42,6 @@ import 'firebase/firebase-firestore'
       })
     }
 
-    addQuote(quote) {
-      if(!this.auth.currentUser){
-        return alert('Not authorized')
-      }
-
-      return this.db.doc(`user_codedamn_video/${this.auth.currentUser.uid}`).set({
-        quote
-      })
-    }
 
     isInitialized() {
       return new Promise(resolve => { //so we can access to the information that there was some authentication data involve
@@ -63,10 +54,7 @@ import 'firebase/firebase-firestore'
       //from line 41 and also need to check from previous line that this user is the current user or not at &&
     }
 
-    async getCurrentUserQuote() {
-      const quote = await this.db.doc(`user_codedamn_video/${this.auth.currentUser.uid}`).get()
-      return quote.get('quote') //so it's how we did store the particular quote
-    }
+ 
    
      
     

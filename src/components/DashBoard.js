@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Typography, Paper, Avatar, CircularProgress, Button } from '@material-ui/core'
-import VerifiedUserOutlined from '@material-ui/icons/VerifiedUserOutlined'
-import withStyles from '@material-ui/core/styles/withStyles'
+import React from 'react'
 import firebase from '../firebase'
 import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
+import MovieList from './movie-list';
 
-const styles = theme => ({
-	main: {
-		width: 'auto',
-		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-			width: 400,
-			marginLeft: 'auto',
-			marginRight: 'auto',
-		}
-	}	
-})
-
+const Button = styled.button`
+	background-color: #8aa15f;
+`
 function Dashboard(props) {
 	const { classes } = props
 
-    const [quote, setQuote] = useState('')
 
-    useEffect(() => {
-        firebase.getCurrentUserQuote().then(setQuote)
-    })
-    
 	if(!firebase.getCurrentUsername()) { 
 		// not logged in
 		alert('Please login first') //so we need to check whether the user is really login 
@@ -32,32 +18,21 @@ function Dashboard(props) {
 		return null
 	} 
 
-
-    
-
-
 	return (
-		<main className={classes.main}>
-			<Paper className={classes.paper}>
-				<Avatar className={classes.avatar}>
-					<VerifiedUserOutlined />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Hello { firebase.getCurrentUsername() }
-				</Typography>
-				<Typography component="h1" variant="h5">
-					Your quote: {quote ? `"${quote}"` : <CircularProgress size={20} />}
-				</Typography>
+		<main>
+			<div>
+				<div>avartar</div>
+				<h1> Hello { firebase.getCurrentUsername() }</h1>
+			
 				<Button
 					type="submit"
-					fullWidth
 					variant="contained"
-					color="secondary"
-					onClick={logout}
-					className={classes.submit}>
+					onClick={logout}>
 					Logout
           		</Button>
-			</Paper>
+				<MovieList />
+
+			</div>
 		</main>
 	)
 
@@ -67,4 +42,4 @@ function Dashboard(props) {
 	}
 }
 
-export default withRouter(withStyles(styles)(Dashboard))
+export default withRouter(Dashboard)
