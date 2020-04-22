@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../firebase'
-import styled from 'styled-components'
+import { Button } from 'antd'
 
-const Button = styled.button`
-	background-color: #8aa15f;
-`
+
 
 function SignIn(props) {
 	const { classes } = props
@@ -39,9 +37,8 @@ function SignIn(props) {
 						type="submit"
 						fullWidth
 						variant="contained"
-						color="secondary"
 						component={Link}
-						to="/register">
+						href="/register">
 						Register
           			</Button>
 				</form>

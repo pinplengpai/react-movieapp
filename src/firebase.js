@@ -52,12 +52,7 @@ import 'firebase/firebase-firestore'
     getCurrentUsername() { 
       return this.auth.currentUser && this.auth.currentUser.displayName //it's what we will register right here it's from what we registered in the begining
       //from line 41 and also need to check from previous line that this user is the current user or not at &&
-    }
-
- 
-   
-     
-    
+    }    
 }
 
-export default new Firebase() // cus it will allow us to access everything in the class with the constructor initialize as well  
+export default new Firebase // cus it will allow us to access everything in the class with the constructor initialize as well  

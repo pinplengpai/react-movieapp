@@ -1,14 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Button } from 'antd'
 
-const Button = styled.button`
-	background-color: #8aa15f;
-	color: white;
-`
 
-function HomePage(props) {
-	const { classes } = props
+function HomePage() {
 
 	return (
 		<main >
@@ -19,14 +14,14 @@ function HomePage(props) {
 					type="submit"
 					variant="contained"
 					component={Link}
-					to="/register">
+					href="/register">
 					Register
           		</Button>
 				<Button
 					type="submit"
 					variant="contained"
 					component={Link}
-					to="/login">
+					href="/login">
 					Login
           		</Button>
 				<Button
@@ -35,7 +30,7 @@ function HomePage(props) {
 					variant="contained"
 					color="secondary"
 					component={Link}
-					to="/dashboard">
+					href="/dashboard">
 					Dashboard
           		</Button>
 			</div>

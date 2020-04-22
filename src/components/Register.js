@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../firebase'
-import styled from 'styled-components'
+import { Button } from 'antd'
 
-const Button = styled.button`
-	background-color: #8aa15f;
-`
+
 
 
 
@@ -50,7 +48,7 @@ function Register(props) {
 						fullWidth
 						variant="contained"
 						component={Link}
-						to="/login">
+						href="/login">
 						Go back to Login
           			</Button>
 				</form>
