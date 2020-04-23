@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import firebase from "../firbase";
+import firebase from "../firebase";
 import { AuthContext } from "../Auth";
 
 const Login = ({ history }) => { //get the history so we will redirect to the specific route

@@ -1,7 +1,8 @@
 import React from 'react';
 import MovieList from './movie-list';
 import { Button } from 'antd';
-import * as firebase from '../firebase';
+import firebase from '../firebase';
+
 
 
 function HomePage(){

@@ -1,6 +1,6 @@
-import { firebase } from 'firebase/app'
-import 'firebase/auth'//Firebase Authentication.
-import 'firebase/firestore' //The Cloud Firestore Database.
+import * as firebase from 'firebase/app';
+import 'firebase/auth';//Firebase Authentication.
+import 'firebase/firestore'; //The Cloud Firestore Database.
 
 
   // Your web app's Firebase configuration
@@ -14,8 +14,8 @@ import 'firebase/firestore' //The Cloud Firestore Database.
     appId: "1:542115104809:web:eb739398427dd031cef438",
     measurementId: "G-8K75712XW8"
   };
-  //   firebase.analytics();
   
-  firebase.initializeApp(config);
+   // Initialize Firebase
+   firebase.initializeApp(config);
 
 export default firebase // cus it will allow us to access everything in the class with the constructor initialize as well  
