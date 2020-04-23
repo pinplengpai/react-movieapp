@@ -1,8 +1,10 @@
 import React from 'react';
+import * as firebase from 'firebase';
 
 function MyMovies() {
+
     return(
-        <div>My Favorite Movies</div>
+        <div style={{color:"white"}}>My Favorite Movies</div>
     )
 }
 

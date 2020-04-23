@@ -12,16 +12,15 @@ import PrivateRoute from './PrivateRoute'
 
 function App() {
  
-  return( //firebaseInitialized !== false ? ( //if firebaseInitialized is not equal to false it will render the rest
+  return( 
         <AuthProvider>
           <Router>
             <Header/>
                 <Switch>
                     <PrivateRoute path="/" exact component={HomePage}/>
+                    <PrivateRoute path="/mymovies" exact component={MyMovies}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/signup" exact component={SignUp} />
-                    <Route path="/mymovies" exact component={MyMovies}/>
-                    {/* <Route path="/dashboard" exact component={DashBoard}/> */}
 
                 </Switch>
             </Router>

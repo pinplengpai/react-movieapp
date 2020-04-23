@@ -30,7 +30,7 @@ function Header() {
     return (
         <HeaderContainer>
           <ul>
-                <li> <Link to="/index">Movies</Link></li> 
+                <li> <Link to="/">Movies</Link></li> 
                 <li> <Link to="/mymovies"> My movies</Link></li> 
             </ul>
         </HeaderContainer>

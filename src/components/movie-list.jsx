@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import firebase from '../firebase';  
 import style from 'styled-components';
-import {Row, Col} from 'antd';
+import {Row, Col, Button} from 'antd';
 import SearchBar from'./SearchBar'
-import { Like } from '.././styles/index'
 
 
 const PosterImage = style.img`
@@ -28,20 +27,6 @@ function useMovies(){
         FetchMovie()
     }, [])
 
-    // useEffect(() => {
-    //    fire
-    //         .firestore()
-    //         .collection('movies')  
-    //         .onSnapshot((snapshot) => { //An initial call using the callback you provide creates a document snapshot immediately with the current contents of the single document. Then, each time the contents change, another call updates the document snapshot.
-    //             const newMovies = snapshot.docs.map((doc) => ({
-    //                 id: doc.id,
-    //                 ...doc.data() //operator here to merge the id with all of this data 
-    //             }))
-
-    //             setMovies(newMovies)
-    //         })
-    // },[]) //an empty array is very important 
-
     return movies
 } //our API in firestore
 
@@ -51,6 +36,20 @@ const MovieList = () => {
     const handleInput = event => {
         setSearch(event.target.value);
     }; //js function for searching in the bar
+
+    //1. link data from firestore and userID together 
+
+    //2. When user click  "like items"(collections'movies') it will be able to store for each user individually and display on "my movie page" 
+        //READ method but link to another page and link User data with Store
+
+    //3. able to unlike from each movie that have been liked previously only on the "MY MOVIE page" and MAYBE able to unlike on dashboard when the user Like the movie already 
+        // DELETE METHOD 
+
+
+    // const onUpdate = () => {
+    //     const db = firebase.firestore()
+    //     db.collection('movies').doc(`${id}`).set({})
+    // }
              
     const SearchAbleList = () => {
         return ( 
@@ -63,7 +62,7 @@ const MovieList = () => {
                         <Col xl={8} sm={12}>
                            <PosterImage src={item.images}/>
                             <p>{item.title}</p> 
-                            <Like> like </Like>
+                             <Button > like </Button> {/*onClick={onUpdate} in the button*/} 
                         </Col>
                     </li>      
                 )
