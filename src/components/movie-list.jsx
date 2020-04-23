@@ -33,39 +33,28 @@ function useMovies(){
 
 const MovieList = () => {
     const movies = useMovies() //referancing data like regular react hook 
-    const [filter, setFilter] = useState("")
+    const [search, setSearch] = useState("")
     const handleInput = event => {
-        setFilter(event.target.value);
+        setSearch(event.target.value);
     }; //js function for searching in the bar
              
     const SearchAbleList = () => {
-        return (
-            movies.map( (movie) => {
-                if(filter.length !== 0) {
-                    if(movie.title.toLowerCase().includes(filter.toLowerCase())){
-                        return (
-                            <li key={movie.id}>
-                                <Col xl={8} sm={12}>
-                                    <PosterImage src={movie.images}/>
-                                    <p>{movie.title}</p> 
-                                    <Like> like </Like>
-                                </Col>
-                            </li>
-                        )
-                    } else {
-                        return null
-                    }
-                }
-                return (
-                    <li key={movie.id}>
+        return ( 
+         <>
+            {movies
+                .filter(item => item.title.toLowerCase().indexOf(search) !== -1)
+                .map(item => {
+                return(
+                    <li key={item.id}>
                         <Col xl={8} sm={12}>
-                            <PosterImage src={movie.images}/>
-                            <p>{movie.title}</p> 
+                            <PosterImage src={item.images}/>
+                            <p>{item.title}</p> 
                             <Like> like </Like>
                         </Col>
-                    </li>
+                    </li>      
                 )
-            })
+            })}
+        </>
         )
     }
 
