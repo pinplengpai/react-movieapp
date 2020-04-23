@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import app from './firebase'
+import firebase from './firebase'
 
 export const AuthContext = React.creatContext(); //tool to allows to propergate data for all react component tree
 
@@ -7,7 +7,7 @@ export const AuthProvider = ({children}) => { //it will store authentication sta
     const [currentUser, setCurrentUser] = useState(null); //to hold the user 
 
     useEffect(() => {
-        app.auth().onAuthStateChanged(setCurrentUser); //and auth will change from firebase. It will run only once 
+        firebase.auth().onAuthStateChanged(setCurrentUser); //and auth will change from firebase. It will run only once 
     },[]);
 
     return(

@@ -1,6 +1,7 @@
-import { firebase } from '@firebase/app'
+import { firebase } from 'firebase/app'
 import 'firebase/auth'//Firebase Authentication.
 import 'firebase/firestore' //The Cloud Firestore Database.
+
 
   // Your web app's Firebase configuration
   const config = {

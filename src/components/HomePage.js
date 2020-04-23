@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieList from './movie-list';
 import { Button } from 'antd';
+import * as firebase from '../firebase';
 
 
 function HomePage(){
@@ -9,7 +10,7 @@ function HomePage(){
         <>
             <div >
                 <header>
-                    <Button onClick={() => app.auth().signOut()}>Sign Out</Button>
+                    <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
                     <main> 
                         <MovieList />
                     </main>
