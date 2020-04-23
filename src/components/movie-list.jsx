@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Firebase from '../firebase';  
+import firebase from '../firebase';  
 import style from 'styled-components';
 import {Row, Col} from 'antd';
 import SearchBar from'./SearchBar'
@@ -16,7 +16,7 @@ function useMovies(){
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
-        Firebase
+        firebase
             .firestore()
             .collection('movies')  
             .onSnapshot((snapshot) => { //An initial call using the callback you provide creates a document snapshot immediately with the current contents of the single document. Then, each time the contents change, another call updates the document snapshot.
@@ -28,7 +28,6 @@ function useMovies(){
                 setMovies(newMovies)
             })
     },[]) //an empty array is very important 
-
     return movies
 } //our API in firestore
 
