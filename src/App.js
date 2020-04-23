@@ -1,37 +1,32 @@
-import React,{useState, useEffect} from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { AuthProvider } from './Auth'
 import Header from './components/Header'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import HomePage from './components/HomePage'
 import MyMovies from './components/MyMovies'
-import IndexPage from './components/IndexPage'
-// import HomePage from './components/HomePage'
-// import Register from './components/Register'
-// import Login from './components/Login'
-// import DashBoard from './components/DashBoard'
-import firebase from './firebase'
+import PrivateRoute from './PrivateRoute'
 
 
 
 function App() {
-  // const [firebaseInitialized, setFirebaseInitialized] = useState(false)
-
-  // useEffect(() => { //if firebase is initialize then we would want to setfirebase. 
-  //   firebase.isInitialized().then(val => {
-  //     setFirebaseInitialized(val)
-  //   })
-  // })
+ 
   return( //firebaseInitialized !== false ? ( //if firebaseInitialized is not equal to false it will render the rest
-        <Router>
-          <Header/>
-              <Switch>
-                  {/* <Route path="/" exact component={HomePage} /> */}
-                  {/* <Route path="/login" exact component={Login}/> */}
-                  {/* <Route path="/register" exact component={Register} /> */}
-                  {/* <Route path="/dashboard" exact component={DashBoard}/> */}
-                  <Route path="/mymovies" exact component={MyMovies}/>
-                  <Route path="/" exact component={IndexPage}/>
-              </Switch>
-          </Router>
-  )//:<div>Loading...</div> //later let's put the nice one 
+        <AuthProvider>
+          <Router>
+            <Header/>
+                <Switch>
+                    <PrivateRoute path="/" exact component={HomePage}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/signup" exact component={Signup} />
+                    <Route path="/mymovies" exact component={MyMovies}/>
+                    {/* <Route path="/dashboard" exact component={DashBoard}/> */}
+
+                </Switch>
+            </Router>
+          </AuthProvider>
+  )
 }
 
 export default App;

@@ -1,7 +1,9 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import { firebase } from '@firebase/app'
+import 'firebase/auth'//Firebase Authentication.
+import 'firebase/firestore' //The Cloud Firestore Database.
+
   // Your web app's Firebase configuration
-  const firebaseConfig = {
+  const config = {
     apiKey: "AIzaSyBhNlAamlFiMO4gReV_nYs9EQnWt10pqE4",
     authDomain: "movie-app-65e1e.firebaseapp.com",
     databaseURL: "https://movie-app-65e1e.firebaseio.com",
@@ -13,6 +15,6 @@ import 'firebase/firestore'
   };
   //   firebase.analytics();
   
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(config);
 
 export default firebase // cus it will allow us to access everything in the class with the constructor initialize as well  

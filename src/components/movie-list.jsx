@@ -16,18 +16,32 @@ function useMovies(){
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
-        firebase
-            .firestore()
-            .collection('movies')  
-            .onSnapshot((snapshot) => { //An initial call using the callback you provide creates a document snapshot immediately with the current contents of the single document. Then, each time the contents change, another call updates the document snapshot.
-                const newMovies = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data() //operator here to merge the id with all of this data 
+        const FetchMovie = async() => {
+            const db = firebase.firestore()
+            const data = await db.collection("movies").get()
+            setMovies(data.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
                 }))
+                )
+        }
+        FetchMovie()
+    }, [])
 
-                setMovies(newMovies)
-            })
-    },[]) //an empty array is very important 
+    // useEffect(() => {
+    //    fire
+    //         .firestore()
+    //         .collection('movies')  
+    //         .onSnapshot((snapshot) => { //An initial call using the callback you provide creates a document snapshot immediately with the current contents of the single document. Then, each time the contents change, another call updates the document snapshot.
+    //             const newMovies = snapshot.docs.map((doc) => ({
+    //                 id: doc.id,
+    //                 ...doc.data() //operator here to merge the id with all of this data 
+    //             }))
+
+    //             setMovies(newMovies)
+    //         })
+    // },[]) //an empty array is very important 
+
     return movies
 } //our API in firestore
 
@@ -47,7 +61,7 @@ const MovieList = () => {
                 return(
                     <li key={item.id}>
                         <Col xl={8} sm={12}>
-                            <PosterImage src={item.images}/>
+                           <PosterImage src={item.images}/>
                             <p>{item.title}</p> 
                             <Like> like </Like>
                         </Col>
