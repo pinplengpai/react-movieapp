@@ -47,5 +47,4 @@ const SignUp = ({history}) => { //getting histroy object from the routing contex
 };
 
 
-
 export default withRouter(SignUp);
