@@ -3,13 +3,21 @@ import { withRouter } from "react-router";
 import firebase from "../firebase";
 
 const SignUp = ({history}) => { //getting histroy object from the routing context 
-    const handleSignUp = useCallback(async event =>  { //once we click submite the function will fire which will useCallback to memerise callback
-        event.preventDefault(); //so we won't reload the page
-        const{ email, password } = event.target.elements; //
-        try {
-            await firebase 
-                .auth()
-                .createUserWithEmailAndPassword(email.value, password.value);
+  const handleSignUp = useCallback(async event =>  { //once we click submite the function will fire which will useCallback to memerise callback
+    event.preventDefault(); //so we won't reload the page
+    const{ email, password } = event.target.elements; //
+    try {
+      await firebase 
+      .auth()
+      .createUserWithEmailAndPassword(email.value, password.value).then(cred => {
+        const name = document.querySelector('#signup-name').value
+        return firebase.firestore().collection('users').doc(cred.user.uid).set({
+          name: name,
+          email: email.value
+          // signupForm.reset();
+          })
+          .catch(console.error)
+        });
             history.push("/"); //if user register properly, we will direct them to the root path
         } catch (error) { // if something goes wrong, we will show an error  
             alert(error);
@@ -19,7 +27,11 @@ const SignUp = ({history}) => { //getting histroy object from the routing contex
     return (
         <div>
           <h1>Sign up</h1>
-          <form onSubmit={handleSignUp}>
+          <form onSubmit={handleSignUp} id="signup-form">
+          <label id="signup-name">
+              Name
+              <input name="name" type="text" placeholder="name" />
+            </label>
             <label>
               Email
               <input name="email" type="email" placeholder="Email" />
@@ -33,5 +45,7 @@ const SignUp = ({history}) => { //getting histroy object from the routing contex
         </div>
     );
 };
+
+
 
 export default withRouter(SignUp);

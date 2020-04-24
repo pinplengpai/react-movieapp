@@ -3,7 +3,7 @@ import firebase from './firebase'
 
 export const AuthContext = React.createContext();//tool to allows to propergate data for all react component tree
 
-export const AuthProvider = ({children}) => { //it will store authentication status 
+export const AuthProvider = ({children}) => { //it will store authentication status //reactnode at that component
     const [currentUser, setCurrentUser] = useState(null); //to hold the user 
     const [pending, setPending] = useState(true);
 
