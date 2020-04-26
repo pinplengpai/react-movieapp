@@ -36,19 +36,40 @@ const MovieList = () => {
     const handleInput = event => {
         setSearch(event.target.value);
     }; //js function for searching in the bar
-    //1. link data from firestore and userID together 
-    // function HandleLike() {
-    //     const userID = firebase.auth().currentUser.uid;
-    //     const theirMovies = {
-    //         id : userID,
-    //         image: movies.images,
-    //         title: movies.title //not sure if it needs to be mapped 
-    //     };
-    //     const cred = () => {
-    //         return firebase.firestore().collection('users').doc(userID).set()
-    //     }
-    //     return firebase.firestore().collection("users").add(theirMovies);
+    
+
+    //like
+    const putMovie = (movie, movieID) => {
+        const user = firebase.auth().currentUser.uid; 
+        return firebase.firestore().collection('users').doc(`${user}`).collection('likes')
+        .doc(`${movieID}`).set({'movie': movie});
+    }
+
+    const handleLike = async (id) => {
+        const likeMovie = await firebase.firestore().collection("movies").doc(id).get()
+        return putMovie(likeMovie.data(), id);
+    }
+
+
+
+    const handleDislike = (movieID) => {
+        const user = firebase.auth().currentUser.uid; 
+        return firebase.firestore().collection('users').doc(`${user}`).collection('likes')
+        .doc(`${movieID}`).delete;
+    }
+
+
+    // const handleDislike =  (id) => {
+    //     return deleteMovie(id)
     // }
+
+    // db.collection("cities").doc("DC").delete().then(function() {
+    //     //     console.log("Document successfully deleted!");
+    //     // }).catch(function(error) {
+    //     //     console.error("Error removing document: ", error);
+    //     // });
+    //     // test.firestore.js
+        
 
     //2. When user click  "like items"(collections'movies') it will be able to store for each user individually and display on "my movie page" 
         //READ method but link to another page and link User data with Store
@@ -63,9 +84,6 @@ const MovieList = () => {
         //       .delete()
         // }
 
-
-    
-    
     const SearchAbleList = () => {
         return ( 
          <>
@@ -77,9 +95,9 @@ const MovieList = () => {
                         <Col xl={8} sm={12}>
                            <PosterImage src={item.images}/>
                             <p>{item.title}</p> 
-                             <Button  > like </Button> 
+                             <Button onClick={() => handleLike(item.id)}> like </Button> 
                              {/* if the user has been liked the unlike button will show up // onClick={HandleLike} */}
-                             <Button > unlike </Button> {/*onClick={handleUnlike} in the button*/} 
+                             <Button onClick={() => handleDislike(item.id)}> unlike </Button> {/*onClick={handleUnlike} in the button*/} 
                         </Col>
                     </li>      
                 )
@@ -87,7 +105,6 @@ const MovieList = () => {
         </>
         )
     }
-
 
     return (
         <>

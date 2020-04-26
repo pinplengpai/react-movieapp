@@ -21,7 +21,6 @@ function App() {
                     <PrivateRoute path="/mymovies" exact component={MyMovies}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/signup" exact component={SignUp} />
-
                 </Switch>
             </Router>
           </AuthProvider>
