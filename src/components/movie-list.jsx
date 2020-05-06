@@ -46,16 +46,17 @@ const MovieList = () => {
     }
 
     const handleLike = async (id) => {
+        console.log(id)
         const likeMovie = await firebase.firestore().collection("movies").doc(id).get()
         return putMovie(likeMovie.data(), id);
     }
 
 
-
     const handleDislike = (movieID) => {
+        console.log(movieID)
         const user = firebase.auth().currentUser.uid; 
         return firebase.firestore().collection('users').doc(`${user}`).collection('likes')
-        .doc(`${movieID}`).delete;
+        .doc(`${movieID}`).delete();
     }
 
 
